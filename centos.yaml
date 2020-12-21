@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: centos
+spec:
+  containers:
+  - name: centos
+    image: centos
+    resources: {}
+    command: ["/bin/bash"]
+    args: ["-c", "while true; do echo 'centos running'; sleep 10;done"]
