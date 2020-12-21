@@ -13,14 +13,14 @@ resource "google_compute_subnetwork" "subnet" {
   ip_cidr_range = "192.168.100.0/24"
 }
 
-resource "google_compute_address" "slb_address" {
-  name   = "slb-external-ip"
-  region = google_compute_subnetwork.subnet.region
-}
+# resource "google_compute_address" "slb_address" {
+#   name   = "slb-external-ip"
+#   region = google_compute_subnetwork.subnet.region
+# }
 
-output "slb-external-ip" {
-  value = google_compute_address.address_slb.address
-}
+# output "slb-external-ip" {
+#   value = google_compute_address.address_slb.address
+# }
 
 
 # External IP address
