@@ -52,3 +52,20 @@ resource "google_compute_router_nat" "nat_gateway" {
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }
+
+# Firewall
+resource "google_compute_firewall" "firewall" {
+  name    = "istio-firewall"
+  network = google_compute_network.vpc.id
+
+  direction = "INGRESS"
+  source_ranges = ["0.0.0.0/0"]
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["10250", "15017", "443"]
+  }
+}
