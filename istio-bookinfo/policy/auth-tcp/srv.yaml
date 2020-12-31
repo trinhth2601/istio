@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-srv
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http
+  template:
+    metadata:
+      labels:
+        app: http
+    spec:
+      containers:
+      - name: http
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: centos-srv
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: centos
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: centos-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: centos
+  template:
+    metadata:
+      labels:
+        app: centos
+    spec:
+      containers:
+      - name: centos
+        image: centos
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do echo 'centos running'; sleep 10;done"]
+        ports:
+        - containerPort: 80
+---
+       

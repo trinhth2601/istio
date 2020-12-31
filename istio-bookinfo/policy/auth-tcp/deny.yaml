@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: tcp-policy
+  namespace: author-tcp
+spec:
+  selector:
+    matchLabels:
+      app: http
+  action: DENY
+  rules:
+  - to:
+    - operation:
+        ports: ["80"]
+
