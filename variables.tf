@@ -1,14 +1,11 @@
 variable "region" {
-  default = "us-east1"
+  default = "us-west2"
 }
 
 variable "zone" {
-  default = "us-east1-b"
+  default = "us-west2-a"
 }
 
 variable "project_id" {
   default = "secret-opus-297504"
 }
-
-
-

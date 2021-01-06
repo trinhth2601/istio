@@ -28,14 +28,17 @@ resource "google_compute_address" "address" {
   name   = "istio-nat-address"
   region = google_compute_subnetwork.subnet.region
 }
+
+resource "google_compute_address" "kiali_address" {
+  name   = "kiali-address"
+  region = google_compute_subnetwork.subnet.region
+}
 # Router
 resource "google_compute_router" "router" {
   name    = "istio-router"
   region  = google_compute_subnetwork.subnet.region
   network = google_compute_network.vpc.id
 }
-
-
 
 # NAT Gateway
 resource "google_compute_router_nat" "nat_gateway" {
@@ -66,6 +69,6 @@ resource "google_compute_firewall" "firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["10250", "15017", "443"]
+    # ports    = ["10250", "15017", "443"]
   }
 }
